@@ -1,0 +1,97 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.br.crash";
+option java_outer_classname = "MovieFlix";
+option objc_class_prefix = "HLW";
+
+package com.br.crash;
+
+service Usuario {
+  rpc registra (CadastraUsuarioRequest) returns (CadastraUsuarioResponse) {}
+  rpc busca (BuscaUsuarioRequest) returns (BuscaUsuarioResponse) {}
+}
+
+service Filme {
+  rpc registra (CadastraFilmeRequest) returns (CadastraFilmeResponse) {}
+  rpc listaFilmes (ListaFilmeRequest) returns (ListaFilmeResponse) {}
+  rpc buscaFilmePorGenero (BuscaFilmePorGeneroRequest) returns (BuscaFilmePorGeneroResponse) {}
+}
+
+service Genero {
+  rpc registra (CadastraGeneroRequest) returns (CadastraGeneroResponse) {}
+}
+
+service Review {
+  rpc registra (CadastraReviewRequest) returns (CadastraReviewResponse) {}
+}
+
+message CadastraUsuarioRequest{
+  string nome = 1;
+  string email = 2;
+  string senha = 3;
+}
+
+message CadastraUsuarioResponse{
+  string nome = 1;
+  string email = 2;
+}
+
+message BuscaUsuarioRequest{
+  int64 id = 1;
+}
+
+message BuscaUsuarioResponse{
+  int64 id = 1;
+  string nome = 2;
+  string email = 3;
+}
+
+message CadastraFilmeRequest{
+  string titulo = 1;
+  string subtitulo = 2;
+  int32 ano = 3;
+  string imgUrl = 4;
+  string sinopse = 5;
+  int64 generoId = 6;
+}
+
+message CadastraFilmeResponse{
+  string titulo = 1;
+  string subtitulo = 2;
+  int32 ano = 3;
+  string imgUrl = 4;
+  string sinopse = 5;
+}
+
+message ListaFilmeRequest{}
+
+message ListaFilmeResponse{
+  string titulo = 1;
+  string subtitulo = 2;
+  int32 ano = 3;
+  string imgUrl = 4;
+  string sinopse = 5;
+}
+
+message CadastraReviewRequest{
+  string comentario = 1;
+  int64 usuarioId = 2;
+  int64 filmeId = 3;
+}
+
+message CadastraReviewResponse{
+  string comentario = 1;
+  int32 filmeId = 2;
+}
+
+message CadastraGeneroRequest{string nome = 1;}
+
+message CadastraGeneroResponse{string nome = 1;}
+
+message BuscaFilmePorGeneroRequest{string nome = 1;}
+
+message BuscaFilmePorGeneroResponse{
+  string nome = 1;
+  repeated ListaFilmeResponse listaFilme = 2;
+}
