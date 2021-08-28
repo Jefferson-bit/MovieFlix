@@ -1,0 +1,6 @@
+applicationType: grpc
+defaultPackage: com.br.crash
+testFramework: junit
+sourceLanguage: kotlin
+buildTool: gradle_kotlin
+features: [annotation-api, app-name, data, data-jpa, gradle, grpc, http-client, jdbc-hikari, junit, kotlin, kotlin-application, logback, mockito, mysql, readme, shade, testcontainers, yaml]
